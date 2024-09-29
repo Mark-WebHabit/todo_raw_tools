@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ToDo - Mark</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+      integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link rel="stylesheet" href="index.css" />
+    <link rel="stylesheet" href="responsive.css" />
+  </head>
+  <body>
+    <main class="wrapper">
+      <h1 id="reminder">Todo Application</h1>
+
+      <div id="button-container">
+        <button id="add-btn" class="btn">NEW</button>
+
+        <select name="filter" class="btn" id="filter">
+          <option value="Pending">PENDING</option>
+          <option value="Done">DONE</option>
+        </select>
+      </div>
+
+      <div class="search-container">
+        <input
+          type="text"
+          id="search"
+          placeholder="Search Task"
+          autocomplete="off"
+          maxlength="30"
+        />
+      </div>
+
+      <p id="no-todo">No Task To Show</p>
+      <section class="list-container" id="todo-content-container"></section>
+    </main>
+
+    <!-- modal to show succees/error message -->
+    <section id="modal">
+      <div id="modal-wrapper">
+        <i class="fas fa-xmark" id="close-modal"></i>
+        <p class="modal-title">Error</p>
+
+        <div class="modal-text">Something went wrong</div>
+      </div>
+    </section>
+
+    <!-- modal for adding new task -->
+    <section class="modal add">
+      <div class="add-task-container">
+        <h3>Watchu gonna do?</h3>
+        <input type="text" id="new-task" maxlength="50" placeholder="Todo" />
+
+        <div class="add-task-btns">
+            <button id="add-task-save">CONFIRM</button>
+            <button id="add-task-cancel">CANCEL</button>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- modal for editing task -->
+    <section class="modal edit">
+      <div class="edit-task-container">
+        <h3>Edit Task</h3>
+        <input type="text" id="edit-task" maxlength="50" placeholder="Todo" />
+
+        <div class="edit-task-btns">
+            <button id="edit-task-save">CONFIRM</button>
+            <button id="edit-task-cancel">CANCEL</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- jquery cdn reference -->
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
+      integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+    <script src="./index.js" defer></script>
+  </body>
+</html>

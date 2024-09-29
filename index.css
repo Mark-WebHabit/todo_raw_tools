@@ -1,0 +1,327 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+
+:root{
+    --dark: #262626;
+    --darker:  #1a1a1a
+    ;
+    --rice: #fcf8ed;
+
+}
+
+*{
+    margin: 0%;
+    padding: 0%;
+    box-sizing: border-box;
+    background-color: var(--dark);
+    color: var(--rice);
+    transition: all 200ms;
+}
+
+
+body{
+    height: 100vh;
+    overflow: hidden;
+    display: grid;
+    place-items: center;
+    font-family: "Poppins", system-ui;
+    position: relative;
+
+}
+
+.wrapper{
+    height: 90%;
+    overflow: scroll;
+    width: 100%;
+    max-width: 600px;
+    padding: 0 0.4em;
+    display: flex;
+    flex-direction: column;
+}
+
+
+.wrapper::-webkit-scrollbar {
+    display: none;
+  }
+  
+.wrapper {
+-ms-overflow-style: none;  
+scrollbar-width: none; 
+}
+
+#reminder{
+    margin-top: 1em;
+    margin-bottom: 0.5em;
+    text-align: center;
+}
+
+#button-container{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.btn{
+    padding: 0.5em 1.5em;
+    font-size: 1rem;
+    font-weight: bold;
+    border-radius: 0.2em;
+    border: none;
+    outline: none;
+    background-color: var(--darker);
+    cursor: pointer;
+}
+
+.btn:hover, .btn:focus{
+    transform: scale(1.2);
+}
+
+.search-container{
+    margin: 1em 0;
+}
+
+#search{
+    width: 100%;
+    font-size: 1rem;
+    padding: 0.6em 0;
+    padding-left: 1em;
+    border: 2px solid var(--darker);
+    border-radius: 0.4em;
+}
+#search:focus{
+    outline: none;
+    border-color: var(--rice);
+}
+
+#search::placeholder{
+    font-weight: bold;
+    color: var(--rice);
+}
+
+.list-container{
+    flex: 1;
+    background-color: var(--darker);
+    border-radius: 0.5em;
+    padding: 0.5em;
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
+
+.list-container::-webkit-scrollbar{
+    display: none;
+    /* background-color: var(--rice); */
+}
+.todo-container{
+    background-color: var(--dark);
+    margin: 0.5em 0;
+    border-radius: 0.3em;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    padding: 0.8em 0;
+}
+.todo-info{
+    flex: 1;
+    display: flex;
+    align-items: center;
+    gap: 1em;
+    margin: 0 0.4em;
+}
+
+.check{
+    height: 25px;
+    width: 25px;
+    cursor: pointer;
+    display: inline-block;
+}
+
+
+.todo-details{
+    flex: 1;
+}
+
+.todo-text
+{
+    font-size: 1.2rem;
+    font-weight: 500;
+    line-height: 1.2rem;
+}
+
+.todo-date{
+    font-size: 0.8rem;
+    color: #bcbcbc;
+    line-height: 1rem;
+}
+
+.todo-input{
+    display: flex;
+    align-items: center;
+    gap: 0.8em;
+    margin-right: 0.4em;
+}
+.todo-input button{
+    border: none;
+    outline: none;
+}
+.todo-input button i{
+    font-size: 1rem;
+    border: none;
+    background-color: var(--darker);background-color: none;
+    padding: 0.8em 0.8em;
+    border-radius: 0.4em;
+    cursor: pointer;
+}
+
+.todo-input button i:hover{
+    color: var(--darker);
+    background-color: var(--rice);
+}
+
+#no-todo{
+    background: none;
+    text-align: center;
+    background-color: var(--darker);
+    padding-top: 1em;
+}
+
+#modal, .modal{
+    background: transparent;
+    width: 100vw;
+    height: 100vh;
+    display: grid;
+    place-items: center;
+    position: absolute;
+    top: 0;
+    left: 0;
+    backdrop-filter: blur(3px);
+    display: none;
+
+}
+
+#modal-wrapper{
+    width: 100%;
+    height: auto;
+    padding-bottom: 2em;
+    max-width: 500px;
+    background-color: var(--rice);
+    border-radius: 1em;
+    position: relative;
+    top: -100%;
+}
+
+
+
+.modal-title{
+    background: none;
+    overflow: hidden;
+    color: var(--darker);
+    font-weight: bolder;
+    font-size: 2rem;
+    margin: 0.4em 1em;
+}
+
+.modal-text{
+    background: none;
+    color: var(--darker);
+    margin: 0 1em;
+    margin-left: 2em;
+}
+
+#close-modal{
+    float: right;
+    margin-right: 0.5em;
+    margin-top: 0.5em;
+    background: none;
+    color: var(--darker);
+    font-size: 2rem;
+    cursor: pointer;
+}
+
+.done{
+    text-decoration: line-through;
+    color: #bfbfbf;
+}
+
+.modal{
+    backdrop-filter: blue(3px);
+}
+
+.add-task-container, .edit-task-container{
+    width: 100%;
+    max-width: 500px;
+    padding: 1em;
+    background: var(--rice);
+    border-radius: 0.5em;
+    scale: 0;
+}
+
+h3{
+    background: none;
+    text-align: center;
+    color: var(--darker);
+    font-size: 1.4rem;
+}
+
+#new-task, #edit-task{
+    width: 100%;
+    background: none;
+    border: 2px solid var(--darker);
+    padding: 0.6em 1.2em;
+    margin: 1em 0;
+    border-radius: 0.4em;
+    color: var(--darker);
+    font-size: 1.1rem;
+    /* animation: blink 1s linear forwards; */
+
+}
+
+#new-task:focus, #edit-task:focus{
+    outline: none;
+    border-color: dodgerblue;
+}
+
+.add-task-btns, .edit-task-btns{
+    display: flex;
+    justify-content: flex-end;
+    gap: 1em;
+    background: none;
+    align-items: center;
+}
+
+.add-task-btns button, .edit-task-btns button{
+    width: 100px;
+    padding: 0.6em 0;
+    border-radius: 0.3em;
+    border: 1px solid transparent;
+    cursor: pointer;
+    color: var(--rice);background-color: #e60000;
+    font-weight: bold;
+}
+
+.add-task-btns button:hover, .edit-task-btns button:hover{
+    color: #e60000;
+    background-color: var(--rice);
+    border-color: #e60000;
+}
+
+.add-task-btns button:first-child, .edit-task-btns button:first-child{
+    background-color: #009900;
+}
+.add-task-btns button:first-child:hover, .edit-task-btns button:first-child:hover{
+    color: #009900;
+    background-color: var(--rice);
+    border-color: #009900;
+}
+
+
+/* @keyframes blink {
+    0%, 20%,40%, 60%, 80%, 100% {
+        border-color: var(--darker);
+        
+
+    }
+    10%, 30%, 50%, 70%, 90% {
+        border-color: #e60000;
+    }
+} */
+

@@ -1,0 +1,26 @@
+[
+    {
+        "id": 1,
+        "todo": "Sleep",
+        "date": "2024-09-29T17:30:36.780Z",
+        "isCompleted": false
+    },
+    {
+        "id": 2,
+        "todo": "Eat",
+        "date": "2024-09-29T17:31:17.930Z",
+        "isCompleted": false
+    },
+    {
+        "id": 3,
+        "todo": "Code",
+        "date": "2024-09-29T17:31:39.606Z",
+        "isCompleted": true
+    },
+    {
+        "id": 4,
+        "todo": "Repeat",
+        "date": "2024-09-29T17:31:55.107Z",
+        "isCompleted": false
+    }
+]
