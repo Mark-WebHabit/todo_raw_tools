@@ -55,10 +55,23 @@ $(async () => {
       return todo;
     });
 
-    // Re-render the todos
-    displayTodo(todos);
-  });
+    // add animation
+    const container = $(`[data_parentid=${id}]`);
 
+    container.animate(
+      {
+        right: "-150%",
+      },
+      200,
+      () => {
+        container.empty();
+        container.animate({ height: 0, padding: 0 }, 300, () => {
+          // Re-render the todos
+          displayTodo(todos);
+        });
+      }
+    );
+  });
   $("#close-modal").click(() => {
     hideModal();
   });
@@ -69,48 +82,70 @@ $(async () => {
 
     todos = todos.filter((todo) => todo.id != id);
 
-    // Re-render the todos
-    displayTodo(todos, $("#filter").val());
+    const container = $(`[data_parentid=${id}]`)
+
+    
+    container.animate(
+      {
+        left: "-150%",
+      },
+      200,
+      () => {
+        container.empty();
+        container.animate({ height: 0, padding: 0 }, 300, () => {
+          // Re-render the todos
+          displayTodo(todos, $("#filter").val());
+        });
+      }
+    );
+
+
   });
 
   $("#add-btn").click((e) => {
     showAddModal();
   });
 
-  $(".edit").click((e) => {
-    const id = e.target.dataset.id;
+  // use event delegation for edit bu tton to prevent conflicts after re-rendering
+  $("#todo-content-container").on("click", ".edit", function (e) {
+    const id = $(this).data("id");
     const todo = todos.find((t) => t.id == id);
 
     if (todo) {
       selectedId = id;
-      showEditModal(todo.todo);
+      showEditModal(todo.todo); // open modal with the todo text
     }
   });
 
   $("#add-task-cancel").click(() => hideAddModal());
 
-  $("#add-task-save").click(() => {
-    const input = $("#new-task").val();
+  $("#add-task-save")
+    .off("click")
+    .click(() => {
+      console.log("called");
 
-    if (input == "") {
-      return;
-    }
+      const input = $("#new-task").val();
 
-    const date = new Date();
-    const newId = date.toISOString();
+      if (input == "") {
+        return;
+      }
 
-    const obj = {
-      id: newId,
-      date,
-      todo: input,
-      isCompleted: false,
-    };
+      const date = new Date().toISOString()
 
-    todos.unshift(obj);
-    hideAddModal();
+      const obj = {
+        id: Math.floor(Math.random() * 1000), // this is for sample purposes this method in not adviosable
+        date,
+        todo: input,
+        isCompleted: false,
+      };      
 
-    displayTodo(todos, $("#filter").val());
-  });
+      todos.unshift(obj);
+      hideAddModal();
+      $("#search").val("");
+      $("#filter").val("Pending");
+
+      displayTodo(todos, $("#filter").val());
+    });
 
   $("#edit-task-cancel").click(() => {
     selectedId = null;
@@ -130,8 +165,8 @@ $(async () => {
       return todo;
     });
 
-    displayTodo(todos, $("#filter").val());
     hideEditModal();
+    displayTodo(todos, $("#filter").val());
   });
 
   $("#close-modal").click(() => {
@@ -213,6 +248,9 @@ function displayTodo(todos, filter = "Pending") {
   // Loop through filtered todos and append them
   filteredTodos.forEach((todo) => {
     const todoContainer = $("<div></div>");
+    todoContainer.attr({
+      data_parentId: todo.id,
+    });
     todoContainer.addClass("todo-container");
     todoContainer.html(`
         <div class="todo-info">
